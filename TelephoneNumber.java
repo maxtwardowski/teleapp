@@ -9,7 +9,16 @@ public class TelephoneNumber implements Comparable<TelephoneNumber> {
     }
 
     public int compareTo(TelephoneNumber otherNumber) {
-        return 0;
+
+        long teleNumberCombined = (long) (localNumber + countryCode * Math.pow(10, String.valueOf(localNumber).length()));
+        long otherteleNumberCombined = (long) (otherNumber.localNumber + otherNumber.countryCode * Math.pow(10, String.valueOf(otherNumber.localNumber).length()));
+
+        if (teleNumberCombined > otherteleNumberCombined)
+            return 1;
+        else if (teleNumberCombined == otherteleNumberCombined)
+            return 0;
+        else
+            return -1;
     }
 
 }
