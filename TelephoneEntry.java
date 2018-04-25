@@ -1,5 +1,5 @@
 public abstract class TelephoneEntry {
 
-    abstract void description();
-
+    abstract String description();
+    abstract long getTelephoneNumber();
 }
