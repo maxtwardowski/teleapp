@@ -12,8 +12,4 @@ public class TelephoneNumber implements Comparable<TelephoneNumber> {
         return 0;
     }
 
-    public static void main(String[] args) {
-
-    }
-
 }
