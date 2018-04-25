@@ -10,7 +10,7 @@ public class TelephoneApp {
 
         Company company1 = new Company("Aksenczer", "Niggerya", 56, 454545987);
         Company company2 = new Company("Fuhitsu", "Raszia", 98, 978978456);
-        Company company3 = new Company("Eriksun", "Cebulandia", 97, 465454781);
+        Company company3 = new Company("Eriksun", "Cebulandia", 17, 465454781);
 
         TreeMap<Long, String> addressbook = new TreeMap<Long, String>();
 
@@ -22,8 +22,11 @@ public class TelephoneApp {
         addressbook.put(company2.getTelephoneNumber(), company2.description());
         addressbook.put(company3.getTelephoneNumber(), company3.description());
 
-        for(Map.Entry m:addressbook.entrySet()){
-            System.out.println(m.getKey()+" "+m.getValue());
+        Iterator iterator = addressbook.entrySet().iterator();
+
+        while (iterator.hasNext()) {
+            Map.Entry me = (Map.Entry) iterator.next();
+            System.out.println(me.getKey() + " " + me.getValue());
         }
 
     }
