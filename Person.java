@@ -1,23 +1,20 @@
 public class Person extends TelephoneEntry {
 
-    String name, lastName, address;
-    TelephoneNumber teleNumber;
+    String name, lastName;
 
-    public Person(String name, String lastName, String address, int countryCode, int localNumber) {
-        TelephoneNumber teleNumber = new TelephoneNumber(countryCode, localNumber);
+    public Person(String name, String lastName, Address address) {
         this.name = name;
         this.lastName = lastName;
         this.address = address;
-        this.teleNumber = teleNumber;
-    }
-
-    public long getTelephoneNumber() {
-        return (long) (teleNumber.localNumber + teleNumber.countryCode * Math.pow(10, String.valueOf(teleNumber.localNumber).length()));
     }
 
     @Override
     public String description() {
-        return name + " " + lastName + "\n" + address;
+        return name + " " + lastName + ", " + getAddress().street + ", " + getAddress().city + " " + getAddress().postalCode;
+    }
+
+    public Address getAddress() {
+        return address;
     }
 
 }

@@ -8,17 +8,30 @@ public class TelephoneNumber implements Comparable<TelephoneNumber> {
         this.localNumber = localNumber;
     }
 
+    public int getCountryCode() {
+        return countryCode;
+    }
+
+    public long getLocalNumber() {
+        return localNumber;
+    }
+
+    @Override
     public int compareTo(TelephoneNumber otherNumber) {
 
-        long teleNumberCombined = (long) (localNumber + countryCode * Math.pow(10, String.valueOf(localNumber).length()));
-        long otherteleNumberCombined = (long) (otherNumber.localNumber + otherNumber.countryCode * Math.pow(10, String.valueOf(otherNumber.localNumber).length()));
-
-        if (teleNumberCombined > otherteleNumberCombined)
+        if (getCountryCode() > otherNumber.getCountryCode())
             return 1;
-        else if (teleNumberCombined == otherteleNumberCombined)
-            return 0;
-        else
+        else if (getCountryCode() < otherNumber.getCountryCode())
             return -1;
+        else {
+            if (getLocalNumber() > otherNumber.getLocalNumber())
+                return 1;
+            else if (getLocalNumber() < otherNumber.getLocalNumber())
+                return -1;
+            else
+                return 0;
+        }
+
     }
 
 }

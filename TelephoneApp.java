@@ -4,29 +4,26 @@ public class TelephoneApp {
 
     public static void main(String[] args) {
 
-        Person person1 = new Person("Max", "Twardowski", "Poland", 48, 606121217);
-        Person person2 = new Person("Jędrzej", "Adamiec", "Rokiciny", 42, 112112112);
-        Person person3 = new Person("Kiki", "Monke", "Zgiesh", 69, 420420420);
+        ArrayList<TelephoneEntry> addressList = new ArrayList<TelephoneEntry>();
 
-        Company company1 = new Company("Aksenczer", "Niggerya", 56, 454545987);
-        Company company2 = new Company("Fuhitsu", "Raszia", 98, 978978456);
-        Company company3 = new Company("Eriksun", "Cebulandia", 17, 465454781);
+        addressList.add(new Person("Max", "Twardowski", new Address("Kierpcowa 5", "Łódź", "92-413", new TelephoneNumber(48, 606121217))));
+        addressList.add(new Person("Jędrzej", "Adamiec", new Address("Północna 74", "Rokiciny", "82-948", new TelephoneNumber(15, 123548321))));
+        addressList.add(new Person("Mikołaj", "Żujewski", new Address("Renesansowa 92", "Zgierz", "59-482", new TelephoneNumber(78, 164712012))));
+        addressList.add(new Person("Mateusz", "Roganowicz", new Address("Sosnowska 67", "Radom", "12-051", new TelephoneNumber(65, 645291349))));
+        addressList.add(new Company("IFE", new Address("Żwirki 7", "Łódź", "97-491", new TelephoneNumber(59, 236126781))));
+        addressList.add(new Company("DMCS", new Address("Wólczańska B18", "Łódź", "98-463", new TelephoneNumber(15, 123456789))));
 
-        TreeMap<Long, String> addressbook = new TreeMap<Long, String>();
+        TreeMap<TelephoneNumber, TelephoneEntry> addressBook = new TreeMap<TelephoneNumber, TelephoneEntry>();
 
-        addressbook.put(person1.getTelephoneNumber(), person1.description());
-        addressbook.put(person2.getTelephoneNumber(), person2.description());
-        addressbook.put(person3.getTelephoneNumber(), person3.description());
+        Iterator addressListIterator = addressList.iterator();
 
-        addressbook.put(company1.getTelephoneNumber(), company1.description());
-        addressbook.put(company2.getTelephoneNumber(), company2.description());
-        addressbook.put(company3.getTelephoneNumber(), company3.description());
+        while (addressListIterator.hasNext()) {
+            TelephoneEntry entry = (TelephoneEntry) addressListIterator.next();
+            addressBook.put(entry.getAddress().getTeleNumber(), entry);
+        }
 
-        Iterator iterator = addressbook.entrySet().iterator();
-
-        while (iterator.hasNext()) {
-            Map.Entry me = (Map.Entry) iterator.next();
-            System.out.println(me.getKey() + " " + me.getValue());
+        for (Map.Entry<TelephoneNumber, TelephoneEntry> entry : addressBook.entrySet()) {
+            System.out.println("Key: " + entry.getKey().countryCode + "-" + entry.getKey().localNumber + ". Value: " + entry.getValue().description());
         }
 
     }

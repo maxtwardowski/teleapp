@@ -1,5 +1,0 @@
-./Company.java
-./TelephoneApp.java
-./Person.java
-./TelephoneNumber.java
-./TelephoneEntry.java
